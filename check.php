@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// require_once('/dbconnect.php');
+require_once('dbconnect.php');
 
 if (!isset($_SESSION['register'])) {
     header('Location:post.php');
@@ -14,16 +14,16 @@ if (!isset($_SESSION['register'])) {
  $detail = $_SESSION['register']['detail'];
  $img_name = $_SESSION['register']['img_name'];
 
-if (!empty($_POST)) {
+
 
     //echo '通過テスト' . '<br>';
-       $sql = 'INSERT INTO `users` SET `title`=?, `date`=?, `detail`=?, `img_name`=?, `created`=NOW()';
+       $sql = 'INSERT INTO `feeds` SET `title`=?, `date`=?, `detail`=?, `img_name`=?';
         $data = array($title, $date ,$detail, $img_name);
         $stmt = $dbh->prepare($sql);
         $stmt->execute($data);
         unset($_SESSION['register']);
-        header('Location:thanks.php');
-    }
+        header('Location:index.php');
+    
 ?>
 
 
@@ -44,16 +44,20 @@ if (!empty($_POST)) {
                 <h2 class="text-center content_header">投稿情報確認</h2>
                 <div class="row">
                     <div class="col-xs-4">
-                        <img src="../user_profile_img/<?php echo htmlspecialchars($img_name); ?>" class="img-responsive img-thumbnail">
+                        <img src="post_img"<?php echo htmlspecialchars($img_name); ?>" class="img-responsive img-thumbnail">
                     </div>
                     <div class="col-xs-8">
                         <div>
                             <span>タイトル</span>
-                            <p class="lead"><?php echo htmlspecialchars($titel); ?></p>
+                            <p class="lead"><?php echo htmlspecialchars($title); ?></p>
                         </div>
                         <div>
-                            <span>詳細</span>
+                            <span>日程</span>
                             <p class="lead"><?php echo htmlspecialchars($date); ?></p>
+                        </div>
+                         <div>
+                            <span>詳細</span>
+                            <p class="lead"><?php echo htmlspecialchars($detail); ?></p>
                         </div>
                         <!-- ③ -->
                         <form method="POST" action="">
@@ -61,7 +65,8 @@ if (!empty($_POST)) {
                             <a href="post.php?action=rewrite" class="btn btn-default">&laquo;&nbsp;戻る</a> | 
                             <!-- ⑤ -->
                             <input type="hidden" name="action" value="submit">
-                            <input type="submit" class="btn btn-primary" value="投稿">
+                            <input type="submit" class="btn btn-primary" href="index.php"
+                            value="投稿">
                         </form>
                     </div>
                 </div>

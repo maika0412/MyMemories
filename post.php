@@ -35,7 +35,7 @@ if (!empty($_POST)) {
         $errors['email'] = 'blank';
    }
 
-    if ($password == '') {
+ if ($detail == '') {
         $errors['detail'] = 'blank';
    }
 
@@ -62,11 +62,11 @@ if (!empty($_POST)) {
    if (empty($errors)) {
         $date_str = date('YmdHis');
         $submit_file_name = $date_str.$file_name;
-        move_uploaded_file($_FILES['input_img_name']['tmp_name'],'../user_profile_img/'.$submit_file_name);
+        move_uploaded_file($_FILES['input_img_name']['tmp_name'],'post.img'.$submit_file_name);
    
        $_SESSION['register']['title'] = $_POST[input_title];
        $_SESSION['register']['date'] = $_POST[input_date];
-       $_SESSION['register']['detaile'] = $_POST[input_detaile];
+       $_SESSION['register']['detail'] = $_POST[input_detail];
        $_SESSION['register']['img_name'] = $submit_file_name;
 
        header('Location: check.php');
@@ -115,7 +115,7 @@ if (!empty($_POST)) {
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="index.html">Main page</a></li>
+            <li class="active">Main page</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -128,14 +128,14 @@ if (!empty($_POST)) {
         <form method="POST" action="post.php" enctype="multipart/form-data">
           <div class="form-group">
             <label for="task">タイトル</label>
-            <input name="title" class="form-control"><?php echo htmlspecialchars($title); ?>
+            <input name="input_title" class="form-control"><?php echo htmlspecialchars($title); ?>
                         <?php if (isset($errors['title']) && $errors['title'] == 'blank'):?> 
                             <p class="text-danger">タイトルを入力してください</p>
                         <?php endif; ?>
           </div>
           <div class="form-group">
             <label for="date">日程</label>
-            <input type="date" name="date" class="form-control">
+            <input type="date" name="input_date" class="form-control">
             <?php echo htmlspecialchars($date); ?>
                         <?php if (isset($errors['date']) && $errors['date'] == 'blank'):?> 
                             <p class="text-danger">ユーザー名を入力してください</p>
@@ -143,8 +143,8 @@ if (!empty($_POST)) {
           </div>
           <div class="form-group">
             <label for="detail">詳細</label>
-            <textarea name="detail" class="form-control" rows="3"></textarea><br>
-             <?php echo htmlspecialchars($detail); ?>
+            <textarea name="input_detail" class="form-control" rows="3"></textarea><br>
+             <!--<?php echo htmlspecialchars($detail); ?>-->
                         <?php if (isset($errors['detail']) && $errors['detail'] == 'blank'):?> 
                             <p class="text-danger">詳細を入力してください</p>
                         <?php endif; ?>
@@ -159,7 +159,7 @@ if (!empty($_POST)) {
                                 <p class="text-danger">拡張子が「jpg」 「png」 「gif」の画像を選択してください。</p>
                             <?php } ?>
           </div><br>
-          <input type="submit" class="btn btn-primary" href="check.php" "value="投稿">
+          <input type="submit" class="btn btn-primary" href="check.php" value="投稿">
           
         </form>
       </div>
