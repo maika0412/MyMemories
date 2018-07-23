@@ -62,7 +62,7 @@ if (!isset($_SESSION['register'])) {
                         <!-- ③ -->
                         <form method="POST" action="">
                             <!-- ④ -->
-                            <a href="post.php?action=rewrite" class="btn btn-default">&laquo;&nbsp;戻る</a> | 
+                            <a href="post_php?action=rewrite" class="btn btn-default">&laquo;&nbsp;戻る</a> | 
                             <!-- ⑤ -->
                             <input type="hidden" name="action" value="submit">
                             <input type="submit" class="btn btn-primary" href="index.php"

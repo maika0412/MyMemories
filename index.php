@@ -6,12 +6,9 @@ require_once('dbconnect.php');
 //多次元配列　[]がいくつかあるかで決まる。今回は二次元配列。
 
 
-
-
 //if(!empty($_POST)){
   //$email = $_POST['input_email'];
   //$password = $_POST['input_password'];
-
 
     $sql = 'SELECT * FROM `feeds`';
     $stmt = $dbh->prepare($sql);
@@ -28,6 +25,7 @@ require_once('dbconnect.php');
             $dbh = null;
     }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -91,26 +89,10 @@ require_once('dbconnect.php');
       <div class="main-contents">
             <div class="row centered mt grid">
                 <h3>Album</h3>
-                <div class="col-lg-4">
-                    <a href="detail.html" class="trim"><img class="picture" src="assets" alt=""></a>
-                </div>
-                <div class="col-lg-4">
-                    <a href="#"><img class="picture" src="assets/img/02.jpg" alt=""></a>
-                </div>
-                <div class="col-lg-4">
-                    <a href="#"><img class="picture" src="assets/img/03.jpg" alt=""></a>
-                </div>
-            </div>
-            
-            <div class="row centered mt grid">
-                <div class="col-lg-4">
-                    <a href="#"><img class="picture" src="assets/img/04.jpg" alt=""></a>
-                </div>
-                <div class="col-lg-4">
-                    <a href="#"><img class="picture" src="assets/img/05.jpg" alt=""></a>
-                </div>
-                <div class="col-lg-4">
-                    <a href="#"><img class="picture" src="assets/img/06.jpg" alt=""></a>
+               <?php foreach ($comments as $comment): ?>
+                 <a href="detail.php"><?php echo $comment['img_name']?>
+        <?php endforeach;?>
+
                 </div>
         </div>
         </div>

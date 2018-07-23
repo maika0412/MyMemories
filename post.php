@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+date_default_timezone_set('Asia/Manila');
 //require('dbconnect.php')
 
 //date_default_timezone_set('Asia/Manila');
@@ -62,7 +63,7 @@ if (!empty($_POST)) {
    if (empty($errors)) {
         $date_str = date('YmdHis');
         $submit_file_name = $date_str.$file_name;
-        move_uploaded_file($_FILES['input_img_name']['tmp_name'],'post.img'.$submit_file_name);
+        move_uploaded_file($_FILES['input_img_name']['tmp_name'],'post_img/'.$submit_file_name);
    
        $_SESSION['register']['title'] = $_POST[input_title];
        $_SESSION['register']['date'] = $_POST[input_date];
@@ -115,7 +116,7 @@ if (!empty($_POST)) {
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active">Main page</a></li>
+            <li class="active"><a>Main page</a><a href="index.php"></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
